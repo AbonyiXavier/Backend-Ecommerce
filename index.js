@@ -9,6 +9,7 @@ const signinRoute = require("./controllers/signin");
 const updateUser = require("./controllers/userUpdate");
 const updatePasswordRoute = require("./controllers/changepassword");
 const logoutRoute = require("./controllers/logout");
+const verifyToken = require("./middleware/verifyToken");
 
 require("dotenv").config();
 
@@ -46,7 +47,6 @@ app.post("/updatePassword/:user_id", updatePasswordRoute);
 app.patch("/updateUser/:user_id", updateUser);
 app.post("/logout", logoutRoute);
 
-const verifyToken = require("./middleware/verifyToken");
 app.get("/authUser", verifyToken, (req, res, next) => {
   res.send("my auth user");
 });
@@ -54,6 +54,7 @@ app.get("/authUser", verifyToken, (req, res, next) => {
 require("./routes/product.route.js")(app);
 require("./routes/order.route.js")(app);
 require("./routes/category.route.js")(app);
+require("./routes/cart.route.js")(app);
 
 app.listen(5000, () => {
   console.log("Nodejs backend application is running at 5000");
