@@ -7,6 +7,7 @@ const fileUpload = require("express-fileupload");
 const signupRoute = require("./controllers/signup");
 const signinRoute = require("./controllers/signin");
 const updateUser = require("./controllers/userUpdate");
+const updatePasswordRoute = require("./controllers/changepassword");
 const logoutRoute = require("./controllers/logout");
 
 require("dotenv").config();
@@ -41,6 +42,7 @@ app.get("/", (req, res) => {
 
 app.post("/signup", signupRoute);
 app.post("/signin", signinRoute);
+app.post("/updatePassword/:user_id", updatePasswordRoute);
 app.patch("/updateUser/:user_id", updateUser);
 app.post("/logout", logoutRoute);
 
